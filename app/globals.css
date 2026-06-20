@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 160 60% 98%;
+    --foreground: 158 64% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 158 64% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 64% 12%;
+    --primary: 158 64% 30%;
+    --primary-foreground: 160 60% 98%;
+    --secondary: 200 80% 95%;
+    --secondary-foreground: 158 64% 20%;
+    --muted: 158 30% 95%;
+    --muted-foreground: 158 20% 40%;
+    --accent: 173 80% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 20 90% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 158 30% 88%;
+    --input: 158 30% 88%;
+    --ring: 158 64% 40%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  body { background: linear-gradient(180deg, #ecfdf5 0%, #dbeafe 35%, #d1fae5 70%, #f0fdfa 100%); }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.08);
+  }
+  .glass-dark {
+    background: rgba(6, 78, 59, 0.4);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(167, 243, 208, 0.2);
+  }
+  .text-gradient-emerald {
+    background: linear-gradient(135deg, #047857 0%, #14b8a6 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-ocean {
+    background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .btn-eco {
+    background: linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #0ea5e9 100%);
+    background-size: 200% 200%;
+    color: white;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.5);
+  }
+  .btn-eco:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.7);
+  }
+  .glow-emerald { box-shadow: 0 0 60px rgba(16, 185, 129, 0.4); }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+/* Smooth scroll - Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgba(167, 243, 208, 0.2); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981, #14b8a6);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #059669, #0ea5e9); }
+
+/* Atmospheric grain overlay */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 30s linear infinite; }
+
+@keyframes drift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-30px) translateX(20px); }
+  66% { transform: translateY(20px) translateX(-15px); }
+}
+.animate-drift { animation: drift 12s ease-in-out infinite; }
